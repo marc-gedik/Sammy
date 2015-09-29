@@ -1,0 +1,12 @@
+* Comprendre l'approche objet de la programmation
+** Cours 1 : Rappel sur la POO
+*** TODO Relire les transparents
+
+** Cours 2 : Modélisation de DOODLE
+*** TODO Répondre à la question : "A quel problème répond doodle.com?"
+
+* Auto-formation Scala
+** TODO Faire les tutoriels de http://scalatutorials.com/
+** TODO Lire http://www.scala-lang.org/what-is-scala.html
+** TODO Lire http://docs.scala-lang.org/tutorials/scala-for-java-programmers.html
+** TODO Faire les sujets de TD du dossier td/
