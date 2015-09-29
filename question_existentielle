@@ -1,0 +1,33 @@
+QUESTION : "Comment s'exprime la solution orientée objet à un problème ?"
+
+---------------------------------
+
+Cela revient à identifier différentes entités (objets) en s'appuyant sur la problématique posée par la création d'un logiciel.
+
+---------------------------------
+
+Modéliser un problème sous forme d'objets capables d'interagir ensemble pour répondre à ce problème.
+
+---------------------------------
+
+En définissant les relations entre les classes.
+
+---------------------------------
+
+La réutilisabilité : la réutilisation des objets existe déjà.
+
+---------------------------------
+
+Il faut dégager un modèle du problème en décrivant ce que chaque objet doit pouvoir effectuer (en action) et ce qu'ils représentent.
+
+---------------------------------
+
+Je préfère rien écrire qu'écrire des conneries, désolé...
+
+---------------------------------
+
+Résoudre les problèmes morceaux par morceaux, afin de simplifier la correction, la maintenance et la réutilisabilité.
+
+---------------------------------
+
+POO c'est comme définir des prototypes.
