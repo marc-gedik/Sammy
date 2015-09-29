@@ -10,3 +10,12 @@
 ** TODO Lire http://www.scala-lang.org/what-is-scala.html
 ** TODO Lire http://docs.scala-lang.org/tutorials/scala-for-java-programmers.html
 ** TODO Faire les sujets de TD du dossier td/
+* Projet
+** TODO Lire le sujet
+** TODO Former un groupe de 4/5 étudiants
+** TODO Se loguer avec ses identifiants UFR via l'onglet LDAP 
+        sur http://moule.informatique.univ-paris-diderot.fr:8080/
+** TODO Créer un projet et rajouter les membres du groupes ainsi
+        que Ines Klimann, Gustavo Petri, Matthieu Boutier et les
+	deux comptes de Yann Regis-Gianas
+
