@@ -31,3 +31,41 @@ Résoudre les problèmes morceaux par morceaux, afin de simplifier la correction
 ---------------------------------
 
 POO c'est comme définir des prototypes.
+
+---------------------------------
+
+C'est implémenter des boîtes à outils pour résoudre un problème particulier.
+
+Représenter les parties principales du problèmes par des choses.
+
+Il s'agit de modéliser le problème sous la forme d'objets en
+définissant ce qu'ils représentent (valeurs/états) et ce qu'ils peuvent faire (verbes/fonctions)
+
+Classifier le problème en  regroupant pa "thème" les problèmes - Platon, 1641
+
+Par définition, un objet présente à un concept. Et la solution d'un
+problème informatique ne peut être qu'un ensemble de concepts
+formulant un moyen pour simplifier puis résoudre ce problème
+informatique.
+
+On y défini un ensemble de structures de données contenant des informations qui interagissent entre elles.
+
+Extraction des objets, relations et comportement des entités exprimés en cahier des charges
+
+Programmer le logiciel en orienté objet
+
+Elle s'articule autour de la division du programme en composants élémentaires ayant un but, un comportement, et un état et des interactions bien définies avec les autres composants.
+
+L'approche objet pour résoudre un problème à pour avantage l'évolutivité, la maintenance, le travail en groupe, l'organisation d'un projet informatique.
+
+En séparant au maximum chacun de composants pour en faire plusieurs objets réutilisables indépendamment.
+
+Abstraction des objets (classes) envoi de messages (appels de fonctions)
+
+Essayer de faire correspondre la relation entre les objets réels et leurs représentations informatiques.
+
+Utiliser des patrons de conception pour produire un code modulaire.
+
+On construits des boîtes (objets) qui sont liés entre eux.
+
+Une réponse orientée objet permet de faire  évoluer le code plus facilement.
