@@ -1,0 +1,30 @@
+* Comprendre l'approche objet de la programmation
+** Cours 1 : Rappel sur la POO
+*** TODO Reprendre ses notes
+*** TODO Relire les transparents
+
+** Cours 2 : Modélisation de DOODLE
+*** TODO Répondre à la question : "A quel problème répond doodle.com?"
+
+* Auto-formation Scala
+** TODO Faire les tutoriels de http://scalatutorials.com/
+** TODO Lire http://www.scala-lang.org/what-is-scala.html
+** TODO Lire http://docs.scala-lang.org/tutorials/scala-for-java-programmers.html
+** TODO Faire les sujets de TD du dossier td/
+* Projet
+** TODO Lire le sujet
+** TODO Former un groupe de 4/5 étudiants
+** TODO Se loguer avec ses identifiants UFR via l'onglet LDAP 
+        sur http://moule.informatique.univ-paris-diderot.fr:8080/
+** TODO Créer un projet et rajouter les membres du groupes ainsi
+        que Ines Klimann, Gustavo Petri, Matthieu Boutier et les
+	deux comptes de Yann Regis-Gianas
+
+** TODO Rendre le manuel d'utilisateur et le cahier des charges
+   DEADLINE: <2015-10-07>
+** TODO Rendre l'architecture et le modèle logique
+   DEADLINE: <2015-10-15>
+** TODO Rendre la version 0
+   DEADLINE: <2015-11-02>
+** TODO Rendre la version 1
+   DEADLINE: <2015-11-14>
