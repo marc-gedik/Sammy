@@ -1,3 +1,0 @@
-package scriptGenerator
-
-class SceneGenerator 
