@@ -6,11 +6,9 @@ import logic.generator.Scene
 
 import scala.collection.mutable.ListBuffer
 
-class SequencePlanning(initScene : Scene) {
-  var dateTournage : Date = null
-  var lieu : String = null
-  var done : Boolean = false
+class SequencePlanning(val scene: Scene) {
+  var dateTournage: Date = null
+  var lieu: String = null
+  var done: Boolean = false
   var intervenants = ListBuffer.empty[Intervenant]
-
-  val scene = initScene
 }

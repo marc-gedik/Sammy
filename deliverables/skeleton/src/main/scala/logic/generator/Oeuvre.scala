@@ -2,8 +2,7 @@ package logic.generator
 
 import scala.collection.mutable.ListBuffer
 
-abstract class Oeuvre(initDescriptor: Descriptor) {
-  val descriptor = initDescriptor
+abstract class Oeuvre(val descriptor: Descriptor) {
 
   val scenes = ListBuffer.empty[Scene]
   val characters = ListBuffer.empty[Character]
