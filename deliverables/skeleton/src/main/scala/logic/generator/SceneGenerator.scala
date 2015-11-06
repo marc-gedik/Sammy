@@ -1,3 +1,37 @@
 package logic.generator
 
-class SceneGenerator
+import logic.generator.scriptElement._
+import logic.tools.IntExt
+
+import scala.io.Source
+import scala.util.Random
+
+object SceneGenerator {
+
+  var scenes = List[Scene]()
+
+  Source.fromFile("src/main/ressources/test.txt").getLines().foreach {
+    line =>
+      val cleaned = line.substring(2)
+      line.charAt(0) match {
+        case 'H' =>
+          scenes = new Scene() :: scenes
+          val splited = cleaned.split(" ")
+          val intExt = if (splited(0) == "INT") IntExt.Ext else IntExt.Int
+          val place = splited(1)
+          val time = splited(2)
+          scenes.head.add(new SceneHeading(intExt, place, time))
+        case 'A' =>
+          scenes.head.add(new Action(cleaned))
+        case 'C' =>
+          scenes.head.add(new CharacterName(cleaned))
+        case 'P' =>
+          scenes.head.add(new Parenthetical(cleaned))
+        case 'D' =>
+          scenes.head.add(new Dialogue(cleaned))
+      }
+  }
+
+  def generate(descriptor: Descriptor): Scene = Random.shuffle(scenes).head
+}
+

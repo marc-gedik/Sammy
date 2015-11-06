@@ -6,7 +6,17 @@ class SerieGenerator extends OeuvreGenerator {
   type O = Serie
   type D = SerieDescriptor
 
-  def generate(desc: SerieDescriptor): Serie = new Serie(desc)
+  def randomGenerator(descriptor: SerieDescriptor): Serie = {
+    val numberOfScenePerEpisode = 5
+    val serie = new Serie(descriptor)
+    for (_ <- 1 to descriptor.nbrSeasons)
+      for (_ <- 1 to descriptor.nbrEpisodes)
+        for (_ <- 1 to numberOfScenePerEpisode)
+          serie.add(SceneGenerator.generate(descriptor))
+    serie
+  }
 
-  def regenerate(constraints: List[Constraint], oeuvre: Serie): Serie = null
+  def generate(desc: SerieDescriptor): Serie = randomGenerator(desc)
+
+  def regenerate(constraints: List[Constraint], oeuvre: Serie): Serie = oeuvre
 }
