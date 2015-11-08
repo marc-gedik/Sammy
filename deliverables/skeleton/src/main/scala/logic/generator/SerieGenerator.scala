@@ -9,9 +9,7 @@ class SerieGenerator extends OeuvreGenerator {
   def randomGenerator(descriptor: SerieDescriptor): Serie = {
     val numberOfScenePerEpisode = 5
     val serie = new Serie(descriptor)
-    for (_ <- 1 to descriptor.nbrSeasons)
-      for (_ <- 1 to descriptor.nbrEpisodes)
-        for (_ <- 1 to numberOfScenePerEpisode)
+    for (_ <- 1 to descriptor.nbrSeasons * descriptor.nbrEpisodes * numberOfScenePerEpisode)
           serie.add(SceneGenerator.generate(descriptor))
     serie
   }

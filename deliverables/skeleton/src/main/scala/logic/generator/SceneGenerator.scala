@@ -32,6 +32,9 @@ object SceneGenerator {
       }
   }
 
-  def generate(descriptor: Descriptor): Scene = Random.shuffle(scenes).head
+  def generate(descriptor: Descriptor): Scene = {
+    val _scenes = Random.shuffle(scenes)
+    scenes = _scenes.tail
+    _scenes.head
+  }
 }
-

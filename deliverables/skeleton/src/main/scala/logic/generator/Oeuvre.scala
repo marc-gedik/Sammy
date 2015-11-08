@@ -11,5 +11,5 @@ abstract class Oeuvre(val descriptor: Descriptor) {
 
   def add(scene: Scene) = scenes = scenes :+ scene
 
-  def export(path: String = "/home"): Unit
+  def export(path: String = "src/main/ressources/script.txt"): Unit
 }
