@@ -3,6 +3,9 @@ package logic.generator
 class SerieDescriptor(title: String,
                       theme: String,
                       val nbrSeasons: Int,
-                      val nbrEpisodes: Int
+                      _nbrEpisodes: Int
                        )
-  extends Descriptor(title, theme)
+  extends Descriptor(title, theme) {
+
+  def nbrEpisodes(season: Int) = _nbrEpisodes
+}

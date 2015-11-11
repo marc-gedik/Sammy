@@ -16,10 +16,10 @@ object SceneGenerator {
       line.charAt(0) match {
         case 'H' =>
           scenes = new Scene() :: scenes
-          val splited = cleaned.split(" ")
-          val intExt = if (splited(0) == "INT") IntExt.Ext else IntExt.Int
-          val place = splited(1)
-          val time = splited(2)
+          val intExt = if (cleaned.substring(0, 3) == "INT") IntExt.Ext else IntExt.Int
+          val s = cleaned.substring(5).split(" - ")
+          val place = s(0)
+          val time = s(1)
           scenes.head.add(new SceneHeading(intExt, place, time))
         case 'A' =>
           scenes.head.add(new Action(cleaned))
@@ -34,7 +34,7 @@ object SceneGenerator {
 
   def generate(descriptor: Descriptor): Scene = {
     val _scenes = Random.shuffle(scenes)
-    scenes = _scenes.tail
+    //scenes = _scenes.tail
     _scenes.head
   }
 }
