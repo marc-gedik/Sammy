@@ -9,4 +9,6 @@ class SerieGenerator extends OeuvreGenerator {
   def generate(desc: SerieDescriptor): Serie = new Serie(desc)
 
   def regenerate(constraints: List[Constraint], oeuvre: Serie): Serie = null
+
+
 }
