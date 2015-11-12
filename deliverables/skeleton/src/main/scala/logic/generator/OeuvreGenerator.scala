@@ -13,6 +13,6 @@ abstract class OeuvreGenerator {
 
 object OeuvreGenerator {
   def apply(kind: String) = kind match {
-    case "Serie" => new SerieGenerator()
+    case "Serie" => new RandomSerieGenerator
   }
 }
