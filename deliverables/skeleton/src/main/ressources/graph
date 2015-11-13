@@ -1,0 +1,25 @@
+{
+  "nodes":{
+    "Starters":[{}],
+    "Finishers":[{}],
+    "ScriptElements":[{
+      "id":0,
+      "value":{
+        "jsonClass":"Dialogue",
+        "dialogue":"Salut toi"
+      }
+    }]
+  },
+  "edges":{
+    "LDiEdge":[{
+      "n1":"S",
+      "n2":"F",
+      "label":"0"
+    }],
+    "LUnDiEdge":[{
+      "n1":"0",
+      "n2":"F",
+      "label":"1"
+    }]
+  }
+}

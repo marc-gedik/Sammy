@@ -12,7 +12,7 @@ class RandomSerieGenerator extends SerieGenerator {
         val scenes = numberOfScenePerEpisode(season, episode)
         serie.newEpisode(season, scenes)
         for (_ <- 1 to scenes) {
-          serie.add(SceneGenerator.generate(descriptor))
+          serie.add(RandomSceneGenerator.generate(descriptor))
         }
       }
     }
