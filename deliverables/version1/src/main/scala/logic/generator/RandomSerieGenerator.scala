@@ -2,7 +2,7 @@ package logic.generator
 
 import logic.generator.constraint.Constraint
 
-class RandomSerieGenerator extends SerieGenerator {
+object RandomSerieGenerator extends SerieGenerator {
 
   def randomGenerator(descriptor: SerieDescriptor): Serie = {
     val serie = new Serie(descriptor)

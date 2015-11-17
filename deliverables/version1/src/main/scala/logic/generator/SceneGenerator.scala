@@ -6,7 +6,7 @@ import logic.tools.IntExt
 import scala.io.Source
 import scala.util.Random
 
-trait SceneGenerator {
+abstract class SceneGenerator {
   def generate(descriptor: Descriptor): Scene
 }
 object RandomSceneGenerator extends SceneGenerator {

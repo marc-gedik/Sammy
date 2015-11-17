@@ -5,7 +5,5 @@ import logic.tools.Sex.Sex
 
 class Character(val name: String,
                 val age: Int,
-                val sex: Sex,
-                val role: Role
-                 )
+                val sex: Sex)
 

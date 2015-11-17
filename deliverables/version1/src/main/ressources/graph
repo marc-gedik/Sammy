@@ -1,13 +1,14 @@
 {
   "nodes":{
-    "Starters":[{}],
-    "Finishers":[{}],
-    "ScriptElements":[{
+    "Starters":[{
+      
+    }],
+    "Finishers":[{
+      
+    }],
+    "Characters":[{
       "id":0,
-      "value":{
-        "jsonClass":"Dialogue",
-        "dialogue":"Salut toi"
-      }
+      "sex":""
     }]
   },
   "edges":{

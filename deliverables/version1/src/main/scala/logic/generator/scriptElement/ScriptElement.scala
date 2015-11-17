@@ -1,6 +1,6 @@
 package logic.generator.scriptElement
 
-trait ScriptElement {
+abstract class ScriptElement {
 
   def getString(): String
   override def toString() = getString()

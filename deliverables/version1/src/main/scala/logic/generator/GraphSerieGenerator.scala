@@ -20,20 +20,21 @@ import scalax.collection.io.json.descriptor.NodeDescriptor
 import scalax.collection.io.json.descriptor.predefined.{LDi, LUnDi}
 import scalax.collection.io.json.{JsonGraph, JsonGraphCoreCompanion}
 import scalax.collection.mutable.Graph
-import scalax.collection.edge.Implicits._ // shortcuts
+import scalax.collection.edge.Implicits._
+
+// shortcuts
 
 class GraphSerieGenerator extends SerieGenerator {
   private val precedence = "0"
   private val mutualExclusion = "1"
 
-  //TODO import graph from file
   private val descriptor = getDescriptor()
-  //private val graph = Graph((StarterNode() ~+> FinisherNode())(precedence), ((ScriptElementNode(0, Dialogue("ok")) ~+ FinisherNode())(mutualExclusion)))
+  //private val graph = Graph((StarterNode() ~+> FinisherNode())(precedence), ((IntroduceCharacterNode(0, "M") ~+ FinisherNode())(mutualExclusion)))
   //exportGraph(true)
   private val graph = importGraph()
 
   def getDescriptor() = {
-    val statrterDesc = new NodeDescriptor[StarterNode](typeId = "Starters") {
+    val starterDesc = new NodeDescriptor[StarterNode](typeId = "Starters") {
       def id(node: Any) = node match {
         case StarterNode() => "S"
       }
@@ -43,16 +44,41 @@ class GraphSerieGenerator extends SerieGenerator {
         case FinisherNode() => "F"
       }
     }
-    val scriptElementDescriptor = new NodeDescriptor[ScriptElementNode](typeId = "ScriptElements", extraClasses = List(classOf[Dialogue])) {
-      def id(node: Any) = node match {
-        case ScriptElementNode(id, _) => id.toString
+    val dialogueNodeDescriptor = new NodeDescriptor[DialogueNode](typeId = "Dialogues") {
+      override def id(node: Any): String = node match {
+        case DialogueNode(id, _, _, _) => id.toString
+      }
+    }
+
+    val sceneHeadingDescriptor = new NodeDescriptor[SceneHeadingNode](typeId = "SceneHeadings",
+      extraClasses = List(classOf[SceneHeading])) {
+      override def id(node: Any): String = node match {
+        case SceneHeadingNode(id, _) => id.toString
+      }
+    }
+
+    val actionDescriptor = new NodeDescriptor[ActionNode](typeId = "Actions") {
+      override def id(node: Any): String = node match {
+        case ActionNode(id, _) => id.toString
+      }
+    }
+
+    val introduceCharacter = new NodeDescriptor[IntroduceCharacterNode](typeId = "Characters") {
+      override def id(node: Any): String = node match {
+        case IntroduceCharacterNode(id, _) => id.toString
       }
     }
 
     new json.descriptor.Descriptor[Node](
-      defaultNodeDescriptor = statrterDesc,
+      defaultNodeDescriptor = starterDesc,
       defaultEdgeDescriptor = LUnDi.descriptor("UnDi"),
-      namedNodeDescriptors = Seq(finisherDescriptor, scriptElementDescriptor),
+      namedNodeDescriptors =
+        Seq(finisherDescriptor,
+          sceneHeadingDescriptor,
+          actionDescriptor,
+          dialogueNodeDescriptor,
+          introduceCharacter
+        ),
       namedEdgeDescriptors = Seq(LDi.descriptor("Di")))
   }
 
@@ -82,7 +108,6 @@ class GraphSerieGenerator extends SerieGenerator {
     // Insert a link between each direct predecessor and each direct successor of excluded event
     for (edge <- mutualGraph) {
       val node = edge.to
-      // TODO recursivement: updateGraph(node)
       for (pre <- node.diPredecessors)
         for (suc <- node.diSuccessors)
           graph.addLEdge(pre, suc)(precedence)
@@ -95,7 +120,7 @@ class GraphSerieGenerator extends SerieGenerator {
 
 
   // Generate a character
-  def generateCharacter(sex: Sex.Sex): Character = new Character(???, ???, sex, ???)
+  def generateCharacter(sex: Sex.Sex): Character = new Character(???, ???, sex)
 
   def generateCharacter(): Character =
     if (Random.nextBoolean())
@@ -103,11 +128,11 @@ class GraphSerieGenerator extends SerieGenerator {
     else
       generateCharacter(Sex.F)
 
-  def generateCharacter(sex: Option[Sex]): Character = sex match {
-    case Some(sex) => generateCharacter(sex)
-    case None => generateCharacter()
+  def generateCharacter(sex: String): Character = sex match {
+    case "M" => generateCharacter(Sex.M)
+    case "F" => generateCharacter(Sex.F)
+    case _ => generateCharacter()
   }
-
 
   def generate(desc: SerieDescriptor): Serie = {
     var root: graph.NodeT = graph.get(StarterNode())
@@ -117,27 +142,35 @@ class GraphSerieGenerator extends SerieGenerator {
 
     var finished = false
     while (!finished) {
-      val options = root.outgoing.withFilter(edge => edge.label == precedence)
+      val options = root.outgoing
 
       val num = Random.nextInt(options.size)
 
       root = graph.get(options.toVector(num).to)
 
       root.value match {
-        case ScriptElementNode(_, SceneHeading(intExt, location, timeOfDay)) =>
-          if (!scene.scriptElements.isEmpty) serie.add(scene)
+        case SceneHeadingNode(_, sceneHeading) =>
           scene = new Scene
-          scene.add(SceneHeading(intExt, location, timeOfDay))
-        case ScriptElementNode(_, x) =>
-          scene.add(x)
-        case IntroduceCharacterNode(sex) =>
+          serie.add(scene)
+          scene.add(sceneHeading)
+        case ActionNode(_, action) =>
+          for (id <- 0 until characters.size)
+            action.replaceAll("$" + id, characters(id).name)
+          scene.add(Action(action))
+        case DialogueNode(id, characterId, parenthetical, dialogue) =>
+          scene.add(CharacterName(characters(characterId).name))
+          parenthetical match {
+            case "" => ()
+            case parenthetical => scene.add(Parenthetical(parenthetical))
+          }
+          scene.add(Dialogue(dialogue))
+        case IntroduceCharacterNode(_, sex) =>
           val character = generateCharacter(sex)
           characters += character
           serie.add(character)
         case FinisherNode() =>
           finished = true
       }
-
       updateGraph(root)
     }
     serie
@@ -149,6 +182,8 @@ class GraphSerieGenerator extends SerieGenerator {
 sealed trait Node extends Product with Serializable
 
 case class StarterNode() extends Node
-case class ScriptElementNode(val id: Int, val value: ScriptElement) extends Node
-case class IntroduceCharacterNode(val sex: Option[Sex]) extends Node
+case class SceneHeadingNode(id: Int, sceneHeading: SceneHeading) extends Node
+case class ActionNode(id: Int, action: String) extends Node
+case class DialogueNode(id: Int, characterId: Int, parenthetical: String, dialogue: String) extends Node
+case class IntroduceCharacterNode(id: Int, sex: String) extends Node
 case class FinisherNode() extends Node
