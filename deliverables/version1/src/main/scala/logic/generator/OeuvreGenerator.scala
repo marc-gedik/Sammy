@@ -12,7 +12,7 @@ abstract class OeuvreGenerator {
 }
 
 object OeuvreGenerator {
-  def apply(kind: String) = kind match {
-    case "Serie" => RandomSerieGenerator
+  def apply(descriptor: Descriptor) = descriptor match {
+    case descriptor : SerieDescriptor => RandomSerieGenerator.generate(descriptor)
   }
 }

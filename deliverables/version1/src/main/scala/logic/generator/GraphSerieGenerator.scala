@@ -28,12 +28,12 @@ class GraphSerieGenerator extends SerieGenerator {
   private val precedence = "0"
   private val mutualExclusion = "1"
 
-  private val descriptor = getDescriptor()
+  private val descriptor = getDescriptor
   //private val graph = Graph((StarterNode() ~+> FinisherNode())(precedence), ((IntroduceCharacterNode(0, "M") ~+ FinisherNode())(mutualExclusion)))
   //exportGraph(true)
   private val graph = importGraph()
 
-  def getDescriptor() = {
+  def getDescriptor = {
     val starterDesc = new NodeDescriptor[StarterNode](typeId = "Starters") {
       def id(node: Any) = node match {
         case StarterNode() => "S"
@@ -83,12 +83,12 @@ class GraphSerieGenerator extends SerieGenerator {
   }
 
   def importGraph(): Graph[Node, LUnDiEdge] = {
-    val jsonText = Source.fromFile("src/main/ressources/graph").mkString
+    val jsonText = Source.fromFile("src/main/resources/graph").mkString
     new JsonGraphCoreCompanion(Graph).fromJson(jsonText, descriptor)
   }
 
   def exportGraph(pretty: Boolean = false) = {
-    val writer = new PrintWriter(new File("src/main/ressources/graph"))
+    val writer = new PrintWriter(new File("src/main/resources/graph"))
     val jsonText = new JsonGraph(graph).toJson(descriptor)
     val json =
       if (pretty)
@@ -154,7 +154,7 @@ class GraphSerieGenerator extends SerieGenerator {
           serie.add(scene)
           scene.add(sceneHeading)
         case ActionNode(_, action) =>
-          for (id <- 0 until characters.size)
+          for (id <- characters.indices)
             action.replaceAll("$" + id, characters(id).name)
           scene.add(Action(action))
         case DialogueNode(id, characterId, parenthetical, dialogue) =>
@@ -182,8 +182,13 @@ class GraphSerieGenerator extends SerieGenerator {
 sealed trait Node extends Product with Serializable
 
 case class StarterNode() extends Node
+
 case class SceneHeadingNode(id: Int, sceneHeading: SceneHeading) extends Node
+
 case class ActionNode(id: Int, action: String) extends Node
+
 case class DialogueNode(id: Int, characterId: Int, parenthetical: String, dialogue: String) extends Node
+
 case class IntroduceCharacterNode(id: Int, sex: String) extends Node
+
 case class FinisherNode() extends Node

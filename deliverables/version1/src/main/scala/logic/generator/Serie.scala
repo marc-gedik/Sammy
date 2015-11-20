@@ -7,11 +7,12 @@ import logic.generator.scriptElement.{Action, CharacterName, Dialogue, Parenthet
 import scala.collection.immutable.::
 import scala.collection.mutable.ListBuffer
 
-class Serie(descriptor: SerieDescriptor) extends Oeuvre(descriptor) {
+class Serie(val descriptor: SerieDescriptor) extends Oeuvre {
   var separation = ListBuffer[ListBuffer[Int]]()
 
-  def newSeason() =  separation += ListBuffer.empty[Int]
-  private def seasonNumber(season: Int) = separation(season-1)
+  def newSeason() = separation += ListBuffer.empty[Int]
+
+  private def seasonNumber(season: Int) = separation(season - 1)
 
   def newEpisode(season: Int, scenes: Int) = seasonNumber(season) += scenes
 
@@ -25,7 +26,7 @@ class Serie(descriptor: SerieDescriptor) extends Oeuvre(descriptor) {
       somme += x
     }
 
-    new Episode(scenes.slice(somme, somme + season(episode - 1)))
+    new Episode(scenes.slice(somme, somme + season(episode - 1)).toList)
   }
 
   def export(path: String): Unit = {
@@ -49,18 +50,16 @@ class Serie(descriptor: SerieDescriptor) extends Oeuvre(descriptor) {
         }
 
         scene.scriptElements.foreach {
-          _ match {
-            case a: Action =>
-              writer.write("\t\t" + a.getString() + "\n\n")
-            case c: CharacterName =>
-              writer.write("\t\t\t\t\t" + c.getString() + "\n")
-            case d: Dialogue =>
-              writer.write("\t\t\t" + d.getString() + "\n\n")
-            case p: Parenthetical =>
-              writer.write("\t\t\t\t\t" + p.getString() + "\n")
-            case sh: SceneHeading =>
-              writer.write("\t\t" + sh.getString() + "\n\n")
-          }
+          case a: Action =>
+            writer.write("\t\t" + a + "\n\n")
+          case c: CharacterName =>
+            writer.write("\t\t\t\t\t" + c + "\n")
+          case d: Dialogue =>
+            writer.write("\t\t\t" + d + "\n\n")
+          case p: Parenthetical =>
+            writer.write("\t\t\t\t\t" + p + "\n")
+          case sh: SceneHeading =>
+            writer.write("\t\t" + sh + "\n\n")
         }
     }
     writer.close()

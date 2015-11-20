@@ -1,5 +1,6 @@
 package logic.generator
 
-abstract class Descriptor(
-                           val title: String,
-                           val theme: String)
+abstract class Descriptor extends Serializable  {
+  val title: String
+  val theme: String
+}

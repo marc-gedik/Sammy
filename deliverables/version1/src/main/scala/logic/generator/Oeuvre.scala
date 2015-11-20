@@ -2,14 +2,15 @@ package logic.generator
 
 import scala.collection.mutable.ListBuffer
 
-abstract class Oeuvre(val descriptor: Descriptor) {
+abstract class Oeuvre extends Serializable {
+  val descriptor: Descriptor
 
-  var scenes = List[Scene]()
-  var characters = List[Character]()
+  val scenes = ListBuffer.empty[Scene]
+  val characters = ListBuffer.empty[Character]
 
-  def add(character: Character) = characters = characters :+ character
+  def add(character: Character) = characters += character
 
-  def add(scene: Scene) = scenes = scenes :+ scene
+  def add(scene: Scene) = scenes += scene
 
-  def export(path: String = "src/main/ressources/script.txt"): Unit
+  def export(path: String = "src/main/resources/script.txt"): Unit
 }

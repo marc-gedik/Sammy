@@ -9,11 +9,12 @@ import scala.util.Random
 abstract class SceneGenerator {
   def generate(descriptor: Descriptor): Scene
 }
+
 object RandomSceneGenerator extends SceneGenerator {
 
   var scenes = List[Scene]()
 
-  Source.fromFile("src/main/ressources/test.txt").getLines().foreach {
+  Source.fromFile("src/main/resources/test.txt").getLines().foreach {
     line =>
       val cleaned = line.substring(2)
       line.charAt(0) match {

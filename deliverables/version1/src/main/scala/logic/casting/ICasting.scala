@@ -1,5 +1,7 @@
 package logic.casting
 
+import logic.generator.Character
+
 trait ICasting {
-  def associate(role: Role, actor: Actor)
+  def associate(character: Character, actor: Actor)
 }

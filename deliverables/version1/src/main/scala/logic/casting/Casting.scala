@@ -1,7 +1,12 @@
 package logic.casting
 
-class Casting extends ICasting {
-  private val assoc: Map[Role, Actor] = Map()
+import logic.generator.{Oeuvre, Character}
 
-  def associate(role: Role, actor: Actor): Unit = assoc + (role -> actor)
+class Casting(oeuvre: Oeuvre) extends ICasting with Serializable{
+  private val assoc: Map[Character, Actor] = Map()
+
+  oeuvre.characters.foreach(character => assoc + (character -> ???))
+
+  def associate(character: Character, actor: Actor): Unit = assoc + (character -> actor)
+
 }
