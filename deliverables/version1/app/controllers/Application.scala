@@ -84,8 +84,21 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     }
   }
 
-  def load = Action { implicit request =>
-    Ok("Salut")
+  def preflight (all : String) = Action {
+      Ok("").withHeaders(
+        ("Access-Control-Allow-Origin", "*"),
+        ("Allow", "*"),
+        ("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS"),
+        ("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent")
+      )
+    }
+
+  def load = Action(parse.multipartFormData) { request =>
+    println(request.body.files)
+    val file = request.body.file("file").get
+    val project = Project.load(file.ref.file)
+    Cache.set("project", project)
+    Ok("File uploaded")
   }
 
   def save = Action {

@@ -9,7 +9,9 @@
             <li>
                 <a class="waves-effect file-field input-field">
                     <span>@messages("Open")</span>
-                        <input type="file">
+                    @helper.form(action = routes.Application.load, 'enctype -> "multipart/form-data") {
+                        <input id="load" class="openProject" name="file" type="file">
+                    }
                 </a>
             </li>
             <li><a class="waves-effect" href="/save">@messages("Save")</a></li>

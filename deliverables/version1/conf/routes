@@ -11,6 +11,8 @@ GET     /scenario/:season           controllers.Application.season(season: Int)
 GET     /scenario/:season/:episode  controllers.Application.episode(season: Int, episode: Int)
 GET     /scenario/:season/:episode/:scene controllers.Application.scene(season: Int, episode: Int, scene: Int)
 
+OPTIONS  /                          controllers.Application.preflight(all="")
+OPTIONS /*all                       controllers.Application.preflight(all)
 POST    /load                       controllers.Application.load
 GET     /save                       controllers.Application.save
 

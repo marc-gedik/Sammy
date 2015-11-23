@@ -40,22 +40,11 @@ object Project {
   }
 
   def load(path: String): Project = {
-    new ObjectInputStream(new FileInputStream(path)) {
-      override def resolveClass(desc: java.io.ObjectStreamClass): Class[_] = {
-        try {
-          Class.forName(desc.getName, false, getClass.getClassLoader)
-        }
-        catch {
-          case ex: ClassNotFoundException => super.resolveClass(desc)
-        }
-      }
-    }.readObject match {
-      case project: Project => project
-    }
+    load(new File(path))
   }
 
-  def loadFromString(obj: String): Project = {
-    new ObjectInputStream(new ByteArrayInputStream(obj.getBytes)) {
+  def load(file: File): Project = {
+    new ObjectInputStream(new FileInputStream(file)) {
       override def resolveClass(desc: java.io.ObjectStreamClass): Class[_] = {
         try {
           Class.forName(desc.getName, false, getClass.getClassLoader)

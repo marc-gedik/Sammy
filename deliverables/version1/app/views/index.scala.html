@@ -39,7 +39,9 @@
                                 <div class="file-field input-field">
                                     <div class="btn waves-effect waves-light">
                                         <span>@messages("Open")</span>
-                                        <input id="load" class="openProject" type="file">
+                                        @helper.form(action = routes.Application.load, 'enctype -> "multipart/form-data") {
+                                            <input id="load" class="openProject" name="file" type="file">
+                                            }
                                     </div>
                                 </div>
                             </form>
@@ -110,8 +112,8 @@
         <div class="container"><a href="#" data-activates="slide-out" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
         <ul id="slide-out" class="side-nav fixed">
             <li ><a class="waves-effect waves-teal modal-trigger" href="#newproject">@messages("Create")</a></li>
-            <li ><label  for="load"><a class="waves-effect waves-teal">@messages("Open")</a></label></li>
+            <li ><label for="load"><a class="waves-effect waves-teal">@messages("Open")</a></label></li>
         </ul>
     </header>
 
- }
+}
