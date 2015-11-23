@@ -1,0 +1,18 @@
+@()(implicit messages: Messages)
+
+<nav>
+
+    <div class="nav-wrapper center">
+        <a href="/" class="brand-logo">Sammy</a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a class="waves-effect file-field input-field">
+                    <span>@messages("Open")</span>
+                        <input type="file">
+                </a>
+            </li>
+            <li><a class="waves-effect" href="/save">@messages("Save")</a></li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,36 @@
+@import logic.Project
+@import play.api.Play.current
+@import play.api.cache
+@(seasonA: Int, episodeA: Int)(implicit messages: Messages)
+
+@main("Sammy - Scenario: " + cache.Cache.getAs[Project]("project").get.oeuvre.descriptor.title) {
+    <main>
+        <div class="section">
+            <div class="container">
+                <h2 class="col s12 header">@messages("Scenario.chooseScene")</h2>
+
+                @for((scene, sceneN) <- cache.Cache.getAs[Project]("project").get.oeuvre(seasonA)(episodeA).zipWithIndex) {
+                    <div class="row"><a href="/scenario/@seasonA/@episodeA/@sceneN" class="col s12 m6 offset-m3 waves-effect waves-light btn-large">@messages("Scenario.scene", sceneN + 1)</a></div>
+                }
+
+
+            </div>
+        </div>
+
+    </main>
+
+} {
+    <header>
+        @headerNav()
+        <nav class="noShadow">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="#!" class="breadcrumb">@messages("Scenario.season", seasonA + 1) </a>
+                    <a href="#!" class="breadcrumb">@messages("Scenario.episode", episodeA + 1)</a>
+                </div>
+            </div>
+        </nav>
+        @serieNav(cache.Cache.getAs[Project]("project").get.oeuvre)(seasonA)(episodeA)()
+    </header>
+
+}

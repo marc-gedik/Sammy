@@ -1,0 +1,12 @@
+@(elements: helper.FieldElements)
+
+<div class="row">
+    <div class="input-field col s12">
+        @if(elements.hasErrors) {
+            @Html(elements.input.body.trim.dropRight(2) + "class='invalid'>")
+        }else {
+        @elements.input
+        }
+    <label for="@elements.id">@elements.label</label>
+    </div>
+</div>

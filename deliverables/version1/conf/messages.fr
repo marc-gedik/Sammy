@@ -1,0 +1,36 @@
+Open=Ouvrir
+Create=Créer
+Save=Sauvegarder
+Start=Commencer
+
+#Index
+Index.subTitle=Génération et Suivi de série tv.
+Index.createProject=Créer un projet
+Index.newProject=Nouveau projet
+Index.newProjectP=Créer un nouveau projet et nous vous guiderons dans la création de la série.
+Index.oldProject=Vous avez déjà un projet
+Index.oldProjectP=Importer directement votre projet, pour suivre l'avancement de la série.
+
+#Create Project Form
+title=Titre
+seasons=Saisons
+episodes=Episodes
+theme=Theme
+generate=Générer
+dismiss=Annuler
+
+#Project Index
+Project.toStart=Choisissez une catégorie pour commencer
+Project.Menu=Menu
+Project.scenario=Scénario
+Project.casting=Casting
+Project.planning=Planning
+Project.monitoring=Suivi - Distribution
+
+#Scenario
+Scenario.season=Saison {0}
+Scenario.episode=Episode {0}
+Scenario.scene=Scene {0}
+Scenario.chooseSeason=Choisissez une saison
+Scenario.chooseEpisode=Choisissez un episode
+Scenario.chooseScene=Choisissez une scène

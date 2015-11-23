@@ -1,0 +1,35 @@
+@import logic.generator.Serie
+@import logic.generator.Episode
+@(serie: Serie)(seasonA: Int = -1)(episodeA: Int = -1)(sceneA: Int = -1)(implicit messages: Messages)
+
+<ul id="slide-out" class="side-nav fixed">
+@for((season, seasonN) <- serie.zipWithIndex) {
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header @if(seasonN == seasonA){active} waves-effect waves-teal">@messages("Scenario.season", seasonN + 1) </a>
+                <div class="collapsible-body" style="display : block ;">
+                    <ul>
+
+                    @for((episode, episodeN) <- season.zipWithIndex) {
+                        <li class="no-padding">
+                            <ul class="collapsible collapsible-accordion">
+                                <li class="bold"><a class="collapsible-header @if(episodeN == episodeA){active} waves-effect waves-teal">@messages("Scenario.episode", episodeN + 1)</a>
+                                    <div class="collapsible-body" style="display : block ;">
+                                        <ul>
+
+                                        @for((scene, sceneN) <- episode.zipWithIndex) {
+                                            <li class="@if(sceneN == sceneA){active}"><a href="/scenario/@seasonN/@episodeN/@sceneN">@messages("Scenario.scene", sceneN + 1)</a></li>
+                                        }
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+}
+</ul>

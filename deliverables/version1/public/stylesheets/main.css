@@ -1,0 +1,88 @@
+header, main, footer {
+    padding-left: 240px;
+}
+
+@media only screen and (max-width: 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
+
+.promo-caption {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+#index-banner {
+    background-color: #ee6e73;
+}
+
+#index-banner .header {
+    color: #FFF;
+}
+
+.header {
+    color: #ee6e73;
+    font-weight: 300;
+}
+
+a.button-collapse.top-nav {
+    position: absolute;
+    text-align: center;
+    height: 48px;
+    width: 48px;
+    left: 7.5%;
+    top: 0;
+    float: none;
+    margin-left: 1.5rem;
+    color: #fff;
+    font-size: 32px;
+    z-index: 2;
+}
+
+.file-field .btn, .file-field .btn-large {
+    height: 36px;
+    line-height: 36px;
+}
+
+@media only screen and (min-width: 601px) {
+    .row .col.offset-m3 {
+        margin-left: 25%;
+    }
+}
+
+.row .col.offset-s2 {
+    margin-left: 16.66667%;
+}
+
+.side-nav .collapsible-body li.active a, .side-nav.fixed .collapsible-body li.active a {
+    color: #444;
+}
+
+.side-nav .collapsible-body li.active > a, .side-nav.fixed .collapsible-body li.active > a {
+    color: #fff;
+}
+
+ul.side-nav.fixed li a {
+    font-size: 13px;
+    line-height: 44px;
+    height: 44px;
+}
+
+.noShadow {
+    box-shadow: none;
+}
+
+nav .nav-wrapper {
+    padding-left: 15px;
+}
+
+.justify{
+    text-align: justify;
+}
+
+.b-margin-0 {
+    margin-bottom: 0;
+}

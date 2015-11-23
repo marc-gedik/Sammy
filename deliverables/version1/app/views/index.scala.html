@@ -1,0 +1,117 @@
+@import views.html.helper.FieldConstructor
+@(form: Form[logic.generator.SerieDescriptor])(implicit messages: Messages)
+@implicitField = @{
+    FieldConstructor(input.apply)
+}
+
+@main("Sammy") {
+
+    <main>
+        <div class="section" id="index-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m9">
+                        <h1 class="header center-on-small-only">Sammy</h1>
+                        <h4 class="light red-text text-lighten-4 center-on-small-only">@messages("Index.subTitle")</h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <!--  Outer row  -->
+            <div class="row">
+
+                <div class="section col s12 m9 l10">
+                    <div id="download" class="row scrollspy">
+                        <h2 class="col s12 header">@messages("Index.createProject")</h2>
+                        <div class="col s12 m6">
+                            <p class="promo-caption">@messages("Index.newProject")</p>
+                            <p>@messages("Index.newProjectP")</p>
+                            <a class="waves-effect waves-light btn modal-trigger" href="#newproject">@messages("Create")</a>
+                        </div>
+                        <div class="col s12 m6">
+                            <p class="promo-caption">@messages("Index.oldProject")</p>
+                            <p>@messages("Index.oldProjectP")</p>
+
+                            <form action="#">
+                                <div class="file-field input-field">
+                                    <div class="btn waves-effect waves-light">
+                                        <span>@messages("Open")</span>
+                                        <input id="load" class="openProject" type="file">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+            <!-- Modal Structure -->
+        <div id="newproject" class="modal">
+
+            <div class="modal-content">
+
+                <h4>Nouveau project</h4>
+
+                @helper.form(action = routes.Application.createProject) {
+                    @helper.inputText(form("title"))
+                    <div class="row" hidden>
+                        <div class="input-field col s12">
+                            <select name="theme" id="theme">
+                                <option value="" disabled selected>Choisissez votre thème</option>
+                                <option value="comedie">Comedie1</option>
+                            </select>
+                            <label>Thème</label>
+                        </div>
+                    </div>
+                    @helper.input(form("seasons")) { (id, name, value, args) =>
+                        <input type="number" name="@name" id="@id" min="0" value="@value" @toHtmlArgs(args) >
+                    }
+                    @helper.input(form("episodes")) { (id, name, value, args) =>
+                        <input type="number" name="@name" id="@id" min="0" value="@value" @toHtmlArgs(args) >
+                    }
+
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">@messages("dismiss")</a>
+                        <button type="submit" class="waves-effect waves btn">@messages("generate")</button>
+                    </div>
+                }
+
+
+                    <!--
+    <div class="file-field input-field">
+      <div class="">
+        <input  id="path" type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+        <label for="path">Emplacement</label>
+      </div>
+    </div>
+-->
+
+            </div>
+
+        </div>
+
+        <script>
+
+        </script>
+    </main>
+
+} {
+
+    <header>
+        <div class="container"><a href="#" data-activates="slide-out" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
+        <ul id="slide-out" class="side-nav fixed">
+            <li ><a class="waves-effect waves-teal modal-trigger" href="#newproject">@messages("Create")</a></li>
+            <li ><label  for="load"><a class="waves-effect waves-teal">@messages("Open")</a></label></li>
+        </ul>
+    </header>
+
+ }
