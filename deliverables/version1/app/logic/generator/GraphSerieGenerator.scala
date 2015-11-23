@@ -6,6 +6,7 @@ import logic.generator.constraint.Constraint
 import logic.generator.scriptElement._
 import logic.tools.Sex
 import logic.tools.Sex.Sex
+import play.api.Play.current
 import play.api.Play
 
 import scala.io.Source
