@@ -5,7 +5,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class SceneGeneratorTest extends FlatSpec with Matchers {
 
-  val serie = OeuvreGenerator("Serie").generate(new SerieDescriptor("Titre", "Theme", 1, 1))
+  val serie : Serie = OeuvreGenerator(new SerieDescriptor("Titre", "Theme", 1, 1))
 
   "Scene" should "be not empty" in {
     serie.scenes.foreach(scene => scene.scriptElements should not be empty)

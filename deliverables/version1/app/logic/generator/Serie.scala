@@ -2,8 +2,6 @@ package logic.generator
 
 import java.io.{File, PrintWriter}
 
-import logic.generator.scriptElement.{Action, CharacterName, Dialogue, Parenthetical, SceneHeading}
-
 import scala.collection.mutable.ListBuffer
 
 class Serie(val descriptor: SerieDescriptor) extends Oeuvre with Iterable[Season] {

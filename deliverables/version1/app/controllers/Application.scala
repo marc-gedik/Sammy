@@ -1,16 +1,17 @@
 package controllers
 
-import java.io.{FileOutputStream, File, ObjectOutputStream}
+import java.io.File
 import javax.inject.Inject
 
-import logic.{SerieProject, Project}
-import logic.generator.{Episode, SerieDescriptor}
+import logic.generator.SerieDescriptor
+import logic.{Project, SerieProject}
+import play.api.Play.current
 import play.api.cache.Cache
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.i18n.{I18nSupport, MessagesApi}
+import play.api.libs.ws.WS
 import play.api.mvc._
-import play.api.Play.current
 
 
 class Application @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
