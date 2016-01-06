@@ -10,7 +10,7 @@ abstract class Oeuvre extends Serializable {
 
   def add(character: Character) = characters += character
 
-  def add(scene: Scene) = scenes += scene
+  def add(scene: Scene) : Unit = scenes += scene
 
   def export(path: String = "src/main/resources/script.txt"): Unit
 }
