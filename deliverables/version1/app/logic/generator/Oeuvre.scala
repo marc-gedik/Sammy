@@ -12,5 +12,10 @@ abstract class Oeuvre extends Serializable {
 
   def add(scene: Scene) : Unit = scenes += scene
 
+  /**
+   * Export the oeuvre to the specified location
+   *
+   * @param path where the file will be saved
+   */
   def export(path: String = "src/main/resources/script.txt"): Unit
 }

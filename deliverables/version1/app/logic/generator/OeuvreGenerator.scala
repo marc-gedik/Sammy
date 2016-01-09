@@ -14,5 +14,6 @@ abstract class OeuvreGenerator {
 object OeuvreGenerator {
   def apply(descriptor: Descriptor) = descriptor match {
     case descriptor : SerieDescriptor => RandomSerieGenerator.generate(descriptor)
+    case descriptor : TheaterPlayDescriptor => RandomTheaterPlayGenerator.generate(descriptor)
   }
 }

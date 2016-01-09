@@ -1,3 +1,3 @@
 package cli
 
-case class Choice[T](name: String, fun: T)
+case class Choice[T](name: String, x: T)

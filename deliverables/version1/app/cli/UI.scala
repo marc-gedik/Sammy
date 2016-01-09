@@ -79,6 +79,6 @@ object UI {
   }
 
   def choose[T](choice: Int, choices: List[Choice[T]]) = {
-    choices(choice).fun
+    choices(choice).x
   }
 }
