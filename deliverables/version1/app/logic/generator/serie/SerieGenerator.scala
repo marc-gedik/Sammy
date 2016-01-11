@@ -1,8 +1,8 @@
 package logic.generator
 
 abstract class SerieGenerator extends OeuvreGenerator {
-  type O = Serie
-  type D = SerieDescriptor
+  override type O = Serie
+  override type D = SerieDescriptor
 
   def numberOfScenePerEpisode(season: Int, episode: Int) = 5
 
