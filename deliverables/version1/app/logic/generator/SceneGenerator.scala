@@ -3,10 +3,10 @@ package logic.generator
 import logic.generator.scriptElement._
 import logic.tools.IntExt
 import play.api.Play
+import play.api.Play.current
 
 import scala.io.Source
 import scala.util.Random
-import play.api.Play.current
 
 abstract class SceneGenerator {
   def generate(descriptor: Descriptor): Scene

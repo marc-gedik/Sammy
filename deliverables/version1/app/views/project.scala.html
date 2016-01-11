@@ -1,6 +1,6 @@
-@import play.api.cache
-@import play.api.Play.current
 @import logic.Project
+@import play.api.Play.current
+@import play.api.cache
 @()(implicit messages: Messages)
 
 @main("Sammy - " + cache.Cache.getAs[Project]("project").get.oeuvre.descriptor.title) {

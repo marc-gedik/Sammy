@@ -5,41 +5,41 @@ import logic.generator.SerieDescriptor
 
 object UI {
 
-  def menu(project: Project) = {
-    val menu = List(
+  def menu(project: Project) : Unit = {
+    val l = List(
       Choice("Oeuvre", oeuvre(project)),
       Choice("Casting", casting(project)),
       Choice("Planning", planning(project)))
 
     println("--- Menu ---")
-    choices(menu)
+    choices(l)
   }
 
   def planning(project: Project) = {
-    val menu = List(
+    val l = List(
       Choice("Menu", menu(project))
     )
 
     println("-- Planning --")
-    choices(menu)
+    choices(l)
   }
 
   def casting(project: Project) = {
-    val menu = List(
+    val l = List(
       Choice("Menu", menu(project))
     )
 
     println("-- Casting --")
-    choices(menu)
+    choices(l)
   }
 
   def oeuvre(project: Project) = {
-    val menu = List(
+    val l = List(
       Choice("Menu", menu(project))
     )
 
     println("-- Oeuvre --")
-    choices(menu)
+    choices(l)
   }
 
   def serie = {

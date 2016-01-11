@@ -1,6 +1,6 @@
 package logic.casting
 
-import logic.generator.{Oeuvre, Character}
+import logic.generator.{Character, Oeuvre}
 
 class Casting(oeuvre: Oeuvre) extends ICasting with Serializable{
   private val assoc: Map[Character, Actor] = Map()

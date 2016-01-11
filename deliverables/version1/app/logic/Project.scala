@@ -6,15 +6,19 @@ import logic.casting.Casting
 import logic.generator._
 import logic.planning.Planning
 
-trait SerieProject {
+trait SerieProject extends Project{
   type OeuvreType = Serie
-  val oeuvre: Serie
+  override val oeuvre: Serie =
+    OeuvreGenerator(descriptor) match {
+      case serie: Serie => serie
+    }
 }
 
-class Project(descriptor: Descriptor) extends Serializable {
-  val oeuvre = OeuvreGenerator(descriptor)
-  val planning = new Planning(oeuvre)
-  val casting = new Casting(oeuvre)
+abstract class Project(val descriptor: Descriptor) extends Serializable {
+  val oeuvre : Oeuvre
+
+  lazy val planning = new Planning(oeuvre)
+  lazy val casting = new Casting(oeuvre)
 }
 
 object Project {

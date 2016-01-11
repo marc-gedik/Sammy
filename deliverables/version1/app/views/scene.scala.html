@@ -2,6 +2,7 @@
 @import play.api.cache
 @import logic.Project
 @import logic.generator.scriptElement._
+@import logic.SerieProject
 @(season: Int)(episode: Int)(scene: Int)(implicit messages: Messages)
 
 @main("Sammy - Scenario: " + cache.Cache.getAs[Project]("project").get.oeuvre.descriptor.title) {
@@ -21,7 +22,7 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                @for(scriptElement <- cache.Cache.getAs[Project]("project").get.oeuvre(season)(episode)(scene)) {
+                @for(scriptElement <- cache.Cache.getAs[SerieProject]("project").get.oeuvre(season)(episode)(scene)) {
                     @scriptElement match {
                         case sceneHeading: SceneHeading => {<div class="row"><div class="col s12">@sceneHeading</div></div>}
                         case action: Action => {<div class="row"><div class="justify col s12">@action</div></div>}
@@ -36,5 +37,5 @@
         </div>
     </main>
 } {
-    @serieNav(cache.Cache.getAs[Project]("project").get.oeuvre)(season)(episode)(scene)
+    @serieNav(cache.Cache.getAs[SerieProject]("project").get.oeuvre)(season)(episode)(scene)
 }

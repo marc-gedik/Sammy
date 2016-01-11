@@ -1,4 +1,4 @@
-@import logic.Project
+@import logic.{Project, SerieProject}
 @import play.api.Play.current
 @import play.api.cache
 @(seasonA: Int)(implicit messages: Messages)
@@ -9,7 +9,7 @@
             <div class="container">
                 <h2 class="col s12 header">@messages("Scenario.chooseEpisode")</h2>
 
-                @for((episode, episodeN) <- cache.Cache.getAs[Project]("project").get.oeuvre(seasonA).zipWithIndex) {
+                @for((episode, episodeN) <- cache.Cache.getAs[SerieProject]("project").get.oeuvre(seasonA).zipWithIndex) {
                     <div class="row"><a href="/scenario/@seasonA/@episodeN" class="col s12 m6 offset-m3 waves-effect waves-light btn-large">@messages("Scenario.episode", episodeN + 1)</a></div>
                 }
 
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </nav>
-        @serieNav(cache.Cache.getAs[Project]("project").get.oeuvre)(seasonA)()()
+        @serieNav(cache.Cache.getAs[SerieProject]("project").get.oeuvre)(seasonA)()()
     </header>
 
 }
