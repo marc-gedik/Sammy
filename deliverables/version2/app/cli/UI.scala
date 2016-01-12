@@ -5,7 +5,7 @@ import logic.generator.SerieDescriptor
 
 object UI {
 
-  def menu(project: Project) : Unit = {
+  def menu(project: Project): Unit = {
     val l = List(
       Choice("Oeuvre", oeuvre(project)),
       Choice("Casting", casting(project)),
@@ -38,6 +38,8 @@ object UI {
       Choice("Menu", menu(project))
     )
 
+
+
     println("-- Oeuvre --")
     choices(l)
   }
@@ -62,10 +64,9 @@ object UI {
     try
       scala.io.StdIn.readLine().toInt
     catch {
-      case e: Exception => {
+      case e: Exception =>
         print("enter a number")
         readInt()
-      }
     }
   }
 

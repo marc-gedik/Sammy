@@ -1,9 +1,7 @@
 package logic.generator
 
 import logic.generator.scriptElement._
-import logic.tools.IntExt
-import play.api.Play
-import play.api.Play.current
+import logic.tools.{IntExt, Utils}
 
 import scala.io.Source
 import scala.util.Random
@@ -18,7 +16,7 @@ object RandomSceneGenerator extends SceneGenerator {
 
   def load(file: String): List[Scene] = {
     var list = List[Scene]()
-    Source.fromInputStream(Play.resourceAsStream("/resources/" + file).get).getLines().foreach {
+    Utils.getResource(file).getLines().foreach {
       line =>
         val cleaned = line.substring(2)
         line.charAt(0) match {

@@ -4,10 +4,8 @@ import java.io.PrintWriter
 
 import logic.generator.constraint.Constraint
 import logic.generator.scriptElement._
-import logic.tools.Sex
+import logic.tools.{Utils, Sex}
 import net.liftweb.json.{JsonAST, JsonParser, Printer}
-import play.api.Play
-import play.api.Play.current
 
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -80,12 +78,12 @@ class GraphSerieGenerator extends SerieGenerator {
   }
 
   def importGraph(): Graph[Node, LUnDiEdge] = {
-    val jsonText = Source.fromInputStream(Play.resourceAsStream("/resources/graph").get).mkString
+    val jsonText = Utils.getResource("graph").mkString
     new JsonGraphCoreCompanion(Graph).fromJson(jsonText, descriptor)
   }
 
   def exportGraph(pretty: Boolean = false) = {
-    val writer = new PrintWriter(Play.resource("/resources/graph").get.getPath)
+    val writer = new PrintWriter(Utils.getResourcePath("graph"))
     val jsonText = new JsonGraph(graph).toJson(descriptor)
     val json =
       if (pretty)
@@ -167,6 +165,8 @@ class GraphSerieGenerator extends SerieGenerator {
           serie.add(character)
         case FinisherNode() =>
           finished = true
+        case StarterNode() =>
+          assert(false)
       }
       updateGraph(root)
     }

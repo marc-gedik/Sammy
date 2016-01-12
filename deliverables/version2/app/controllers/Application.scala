@@ -4,7 +4,9 @@ import java.io.File
 import javax.inject.Inject
 
 import logic.generator.SerieDescriptor
+import logic.tools.Utils
 import logic.{Project, SerieProject}
+import play.api.Play
 import play.api.Play.current
 import play.api.cache.Cache
 import play.api.data.Form
@@ -12,8 +14,13 @@ import play.api.data.Forms._
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc._
 
+import scala.io.Source
+
 
 class Application @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+
+  Utils.getResource = fileName => Source.fromInputStream(Play.resourceAsStream("/resources/" + fileName).get)
+  Utils.getResourcePath = fileName => Play.resource("/resources/" + fileName).get.getPath
 
   val descriptorForm = Form(mapping(
     "title" -> nonEmptyText,
@@ -84,14 +91,14 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     }
   }
 
-  def preflight (all : String) = Action {
-      Ok("").withHeaders(
-        ("Access-Control-Allow-Origin", "*"),
-        ("Allow", "*"),
-        ("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS"),
-        ("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent")
-      )
-    }
+  def preflight(all: String) = Action {
+    Ok("").withHeaders(
+      ("Access-Control-Allow-Origin", "*"),
+      ("Allow", "*"),
+      ("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS"),
+      ("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent")
+    )
+  }
 
   def load = Action(parse.multipartFormData) { request =>
     println(request.body.files)

@@ -1,9 +1,9 @@
+package cli
+
 import java.io.File
 
-import cli.{Choice, UI}
 import logic.Project
 
-case class Config(openProject: Boolean = false, project: File = null, debug: Boolean = false)
 
 object Main {
 
