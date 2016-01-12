@@ -10,8 +10,13 @@ abstract class SceneGenerator {
   def generate(descriptor: Descriptor): Scene
 }
 
+/**
+ *  Lis des scenes dans un fichier,
+ *  et en fonction du type de l'oeuvre renvoit une scene aleatoirement
+ */
 object RandomSceneGenerator extends SceneGenerator {
 
+  val thaterPlayScenes = List[Scene]()
   val serieScenes = load("test.txt")
 
   def load(file: String): List[Scene] = {
