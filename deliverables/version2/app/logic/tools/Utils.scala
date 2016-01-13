@@ -5,8 +5,8 @@ import scala.io.{BufferedSource, Source}
 object Utils {
 
   var getResource: (String => BufferedSource) =
-    fileName => Source.fromFile("/conf/resources" + fileName)
+    fileName => Source.fromFile("conf/resources/" + fileName)
 
   var getResourcePath: (String => String) =
-    fileName => "/conf/resources" + fileName
+    fileName => "conf/resources/" + fileName
 }

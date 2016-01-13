@@ -1,9 +1,5 @@
 package logic.audio
 
-import java.io.File
-
-import scala.collection.mutable.ListBuffer
-
 abstract class Audio {
 
   def addText(text : String): Unit
@@ -11,20 +7,19 @@ abstract class Audio {
   /*
     Export text to mp3
    */
-  def export(): File
+  def export(path: String): Unit
 }
 
 object Audio {
 
   def apply() = new Audio {
-    var text = ListBuffer.empty[String]
+    var text = ""
 
     override def addText(textPart: String): Unit = text += textPart
 
     /*
     Export text to mp3
    */
-    //TODO
-    override def export(): File = ???
+    override def export(path: String): Unit = Freetts_syn.syn(text, path)
   }
 }

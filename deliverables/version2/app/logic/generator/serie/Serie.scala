@@ -3,7 +3,7 @@ package logic.generator
 import java.io.{File, PrintWriter}
 
 import logic.audio.{Audio, Audioizable}
-import logic.generator.scriptElement.Dialogue
+import logic.generator.scriptElement.{Action, Dialogue}
 
 import scala.collection.mutable.ListBuffer
 
@@ -51,9 +51,16 @@ class Serie(val descriptor: SerieDescriptor) extends Oeuvre with Iterable[Season
 
   override def iterator: Iterator[Season] = seasons.iterator
 
-  override def exportAudio(): File = {
-    val audio = Audio()
-    scenes.foreach(scene => scene foreach {case Dialogue(dialogue) => audio.addText(dialogue)})
-    audio.export()
+  override def exportAudio(): Unit = {
+    for ((season, seasonInd) <- seasons.zipWithIndex)
+      for ((episode, episodeInd) <- season.zipWithIndex) {
+        val audio = Audio()
+        scenes.foreach(scene => scene foreach {
+          case Dialogue(dialogue) => audio.addText(dialogue + "\t\n")
+          case Action(action) => audio.addText(action + "\t\n")
+          case _ => ()
+        })
+        audio.export("/tmp/" + descriptor.title + "Saison-" + (seasonInd + 1) + "-" + "Episode" + (episodeInd + 1) + ".wav")
+      }
   }
 }

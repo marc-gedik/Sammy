@@ -10,6 +10,7 @@ val scalaTest = "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
 val graphCore = "com.assembla.scala-incubator" %% "graph-core" % "1.9.4"
 val graphJson = "com.assembla.scala-incubator" %% "graph-json" % "1.9.2"
 val scopt = "com.github.scopt" %% "scopt" % "3.3.0"
+val freetts = "org.mobicents.external.freetts" % "freetts" % "1.0"
 
 resolvers += Resolver.sonatypeRepo("public")
 
@@ -17,11 +18,12 @@ libraryDependencies ++= Seq(
   //jdbc,
   cache,
   ws,
-  //specs2 % Test,
+  specs2 % Test,
   scalaTest,
   graphCore,
   graphJson,
-  scopt
+  scopt,
+  freetts
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
